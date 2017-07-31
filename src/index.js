@@ -134,12 +134,12 @@ PolyfillInjectorPlugin.prototype.apply = function apply(compiler) {
                         return;
                     }
 
-                    // (function(main) {
+                    // .call(window, function(main) {
                     //   load polyfills if needed, then execute main()
                     // }) (function() { normal application code goes here... });
                     const source = new ConcatSource(
                         injector,
-                        '(function() {\n',
+                        '.call(window, function() {\n',
                         compilation.assets[file],
                         '\n});'
                     );
